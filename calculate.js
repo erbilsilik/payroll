@@ -1,17 +1,11 @@
-let salaryGross = 0;
-const salaryNet = 2000;
-let sgkBase = 0;
-let incomeTaxBase;
-const stampTaxPercent = 0.00759;
-const incomeTaxPercentage1 = 0.15;
-const incomeTaxPercentage2 = 0.2;
-const incomeTaxPercentage3 = 0.27;
-let incomeTaxPercentage = 0.15;
-let incomeTax = 0;
-const unemploymentEmployeeTax = 0.01;
-const sgkTax = 0.14;
-let salaryTotal = 0;
-const months = [
+const salaryNet = 2000,
+    stampTaxPercent = 0.00759,
+    incomeTaxPercentage1 = 0.15,
+    incomeTaxPercentage2 = 0.2,
+    incomeTaxPercentage3 = 0.27,
+    unemploymentEmployeeTax = 0.01,
+    sgkTax = 0.14,
+    months = [
     "Ocak", 
     "Şubat", 
     "Mart", 
@@ -24,21 +18,27 @@ const months = [
     "Ekim",
     "Kasım",
     "Aralık"
-];
+    ];
+let salaryGross = 0,
+    incomeTaxPercentage = 0.15,
+    sgkBase = 0,
+    incomeTaxBase,
+    incomeTax = 0,
+    salaryTotal = 0;
 
 function calculate() {
     let results = '';
     for (let i = 0; i< months.length; i++) {
     incomeTaxPercentage = checkMonthMonthly(salaryTotal);
     let salaryGrossPercent = 1 - ((1 - (sgkTax + unemploymentEmployeeTax)) * incomeTaxPercentage + 
-    stampTaxPercent + unemploymentEmployeeTax + sgkTax);
+        stampTaxPercent + unemploymentEmployeeTax + sgkTax);
     salaryGross = Number((salaryNet / salaryGrossPercent).toFixed(2));
     salaryTotal += salaryGross;
     results += `
     <tr>
-    <td>${months[i]}</td>
-    <td>${salaryGross}</td>
-    <td>${salaryNet}</td>
+        <td>${months[i]}</td>
+        <td>${salaryGross}</td>
+        <td>${salaryNet}</td>
     </tr>`;
     }
 
